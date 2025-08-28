@@ -1,4 +1,5 @@
 import TestMsg from '../commands/TestMsg';
+import WeBall from '../commands/WeBall';
 import RegisterFacade from '../system/RegisterFacade';
 import * as vscode from 'vscode';
 
@@ -14,6 +15,10 @@ export default class Registers extends RegisterFacade
     {
         this.registerCommand('kadec-adhd.testMsg', () => {
             this.callCommand(TestMsg);
+        });
+
+        this.registerCommand('kadec-adhd.we-ball', () => {
+            this.callCommand(WeBall);
         });
     }
     
