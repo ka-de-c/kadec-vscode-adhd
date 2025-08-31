@@ -2,9 +2,9 @@ import CommandWrapper from "./CommandWrapper";
 
 export default class TestMsg extends CommandWrapper {
 
-    public constructor()
+    public constructor(con)
     {
-        super();
+        super(con);
     }
 
     public run()

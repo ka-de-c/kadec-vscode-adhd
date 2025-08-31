@@ -2,7 +2,7 @@ import * as vscode from 'vscode';
 import CommandInterface from './types/interfaces/CommandInterface';
 import { CommandConstructor } from './types/system-global';
 
-export default abstract class RegisterFacade {
+export default class RegisterFacade {
     
     protected context: vscode.ExtensionContext;
     
@@ -11,12 +11,12 @@ export default abstract class RegisterFacade {
         this.context = context;
     }
 
-    protected callCommand<T extends CommandInterface>(commandClass: CommandConstructor<T>)
+    public callCommand<T extends CommandInterface>(commandClass: CommandConstructor<T>)
     {
-        new commandClass().run();
+        new commandClass(this.context).run();
     }
     
-    protected registerCommand(
+    public registerCommand(
         command: string,
         callback: (...args: any[]) => any,
         thisArg?: any

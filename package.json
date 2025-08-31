@@ -21,6 +21,10 @@
       {
         "command": "kadec-adhd.we-ball",
         "title": "We ball"
+      },
+      {
+        "command": "kadec-adhd.baller",
+        "title": "Baller"
       }
     ],
     "keybindings": {

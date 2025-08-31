@@ -10,4 +10,9 @@ export default abstract class VscodeContext {
     {
     }
 
+    protected getDocumentByName(name: string): vscode.TextDocument | undefined {
+        return vscode.workspace.textDocuments.find(doc => doc.fileName.endsWith(name));
+    }
+
+
 }

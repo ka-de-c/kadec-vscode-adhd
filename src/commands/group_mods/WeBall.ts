@@ -1,15 +1,15 @@
 import { TextDocument, ViewColumn } from "vscode";
-import { ThreeColGroupSplitEnum } from "../enums/GroupSplitEnums";
-import CommandWrapper from "./CommandWrapper";
-import { ViewColumnArrayType } from "../types/commandTypes";
+import { ThreeColGroupSplitEnum } from "../../enums/GroupSplitEnums";
+import { ViewColumnArrayType } from "../../types/commandTypes";
+import GroupModifications from "./GroupModifications";
 
-export default class WeBall extends CommandWrapper {
+export default class WeBall extends GroupModifications {
 
     protected amount?: ThreeColGroupSplitEnum;
     
-    public constructor()
+    public constructor(con)
     {
-        super();
+        super(con);
     }
 
     public async run()
@@ -63,53 +63,9 @@ export default class WeBall extends CommandWrapper {
         await this.showDocument(asd1);
         await this.splitDown();
 
-        // const activeEditor = this.vscode.window.activeTextEditor;
-
         let asd4 = await this.createBlankDocument();
         await this.showDocument(asd4);
 
-        let activeEditors = this.vscode.window.visibleTextEditors;
-
-        console.log(activeEditors);
-        
-        const uris = this.vscode.window.visibleTextEditors.map(e => e.document.uri.toString());
-        const anyDuplicated = new Set(uris).size < uris.length;
-
-        console.log(anyDuplicated);
-        
-        // activeEditors.forEach((ae) => {
-        //     console.log(ae.document.fileName);
-        //     console.log(ae.document);
-        // });
-    }
-
-    private async createBlankDocument(content: string = ""): Promise<TextDocument>
-    {
-        return await this.vscode.workspace.openTextDocument({
-            content: content,
-        });
-    }
-
-    private async openDocument(
-        doc: TextDocument,
-        column: keyof typeof this.vscode.ViewColumn
-    ): Promise<void>
-    {
-        const colValue = this.vscode.ViewColumn[column];
-        await this.vscode.window.showTextDocument(doc, colValue);
-    }
-
-    private async showDocument(doc: TextDocument): Promise<void>
-    {
-        await this.vscode.window.showTextDocument(doc, {
-            preserveFocus: false,
-            preview: false,
-        });
-    }
-
-    private async splitDown(): Promise<void>
-    {
-        await this.vscode.commands.executeCommand('workbench.action.splitEditorDown');
     }
     
 }
